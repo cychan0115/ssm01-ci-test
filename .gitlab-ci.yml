@@ -7,6 +7,8 @@ stages:
 # path:
 #  - /cache/local/repo/
 job:
+ only:
+  - master
  stage: build
  script: 
    - mvn -X install
