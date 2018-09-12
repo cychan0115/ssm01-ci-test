@@ -1,0 +1,16 @@
+image: maven:3-jdk-7
+
+stages:
+ - build
+#cache:
+# key: maven
+# path:
+#  - /cache/local/repo/
+job:
+ stage: build
+ script: 
+   - mvn -X install
+   - ls ./target/
+   - curl --upload-file ./target/ssm01.war  "http://test:test@192.168.2.49:8080/manager/text/deploy?path=/debug&update=true"
+ tags:
+  - test4
